@@ -1,0 +1,42 @@
+spring:
+#  alibaba druid
+  datasource:
+    druid:
+      url: jdbc:mysql://localhost:3306/booksystem?serverTimezone=UTC
+      username: root
+      password: 1330
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      initial-size: 5
+      max-active: 30
+      min-idle: 5
+      max-wait: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 1 FROM DUAL
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 50
+      filters: stat,wall
+      connect-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+      use-global-data-source-stat: true
+      stat-view-servlet:
+        login-username: admin
+        login-password: 123
+      web-stat-filter:
+        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
+#  thymeleaf
+  thymeleaf:
+    mode: HTML5
+    encoding: UTF-8
+    cache: false
+  #  static resources
+  web:
+    resources:
+      static-locations: classpath:/mydir/,classpath:/resources/,classpath:/static/,classpath:/public/,classpath:/static/css/,classpath:/templates/,classpath:/static/js/
+#  mybatis-plus
+mybatis-plus:
+  configuration:
+#    print sql
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

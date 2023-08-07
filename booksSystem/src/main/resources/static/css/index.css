@@ -1,0 +1,11 @@
+#seek{
+    width: 180px;
+    float: left;
+}
+#seek_bt{
+    float: right;
+}
+.seek{
+    width: 400px;
+    margin: auto;
+}

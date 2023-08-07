@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>XX图书库存管理系统</title>
+    <link href="/index.css" rel="stylesheet">
+    <link href="/bootstrap.min.css" rel="stylesheet">
+    <script src="/jquery.min.js"></script>
+    <script src="/bootstrap.min.js"></script>
+    <script>
+        function deleteCon(){
+            var deleteAction =  confirm("是否确定删除？");
+            bookId=document.getElementById('bookId').value
+            page = document.getElementById('page').value
+            if (deleteAction){
+                document.getElementById('delete_bt')
+                window.location.href='/books/deleteBookById/'+bookId+'/'+page
+            }
+        }
+    </script>
+</head>
+<body>
+<div>
+    <div class="l_head">
+        <h1>图书管理系统</h1>
+    </div>
+    <div class="l_mian">
+        <div class="seek">
+            <form>
+                <div class="row" id="seek">
+                    <input type="text" class="form-control" placeholder="搜索">
+                </div>
+                <button id="seek_bt">搜索</button>
+            </form>
+        </div>
+        <div class="container mt-3">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>编号</th>
+                    <th>书名</th>
+                    <th>作者</th>
+                    <th>价格</th>
+                    <th>数量</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="l,i:${list.books}">
+                    <td th:text="${l.bookId}"></td>
+                    <td th:text="${l.bookName}"></td>
+                    <td th:text="${l.author}"></td>
+                    <td th:text="${l.price}"></td>
+                    <td th:text="${l.count}"></td>
+                    <td>
+                        <input id="bookId" type="hidden" th:value="${l.bookId}">
+                        <input id="page" type="hidden" th:value="${list.page}">
+                        <a id="delete_bt" onclick="deleteCon()" type="button">删除</a>
+                        <a href="" type="button">修改</a>
+                        <!-- 修改弹窗按钮 -->
+                        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                            开始演示模态框
+                        </button>
+                        <!-- 修改弹窗） -->
+                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                            &times;
+                                        </button>
+                                        <h4 class="modal-title" id="myModalLabel">
+                                            模态框（Modal）标题
+                                        </h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        在这里添加一些文本
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                                        </button>
+                                        <button type="button" class="btn btn-primary">
+                                            提交更改
+                                        </button>
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal -->
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
